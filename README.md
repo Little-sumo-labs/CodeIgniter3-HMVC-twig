@@ -16,7 +16,7 @@
     * $config['index_page'] = '';
     * $config['uri_protocol']	= 'AUTO';
 * créer un fichier .htaccess
-    * ```
+```
 RewriteEngine on
 RewriteBase /
 # Hide the application and system directories by redirecting the request to index.php
@@ -36,3 +36,21 @@ RewriteRule ^(.*)$ ./index.php/$1 [L]
 * Dans ce dossier 'modules', créer autant de dossier que de modules. (dans mon exemple 'home').
 * Dans les dossiers de modules, il suffit de créer des dossiers comme pour un projet spécifique à CodeIgniter.
 Exemple : controllers, helpers, models, views ...
+
+## Twig
+### Installation
+* Suivre la procédure sur la page [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
+* Faire marcher Twig avec les sous-modules :
+    * Etendre chaques constructeurs avec MX_Controller
+    * Ajouter une classe __construct() avec le code suivant
+
+```
+RewriteEngine on
+parent::__construct();
+
+$config = [
+    'paths' => ['application/modules/home/views', VIEWPATH],
+    'cache' => 'application/cache',
+];
+$this->load->library('twig', $config);
+```
