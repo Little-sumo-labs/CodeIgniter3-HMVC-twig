@@ -45,7 +45,6 @@ Exemple : controllers, helpers, models, views ...
     * Ajouter une classe __construct() avec le code suivant
 
 ```
-RewriteEngine on
 parent::__construct();
 
 $config = [
