@@ -1,36 +1,39 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-// inspiration sur les helpers
-// https://openclassrooms.com/courses/codeigniter-le-framework-au-service-des-zeros/les-helpers
-
-if ( ! function_exists('css_url'))
+if ( ! function_exists('site_url'))
 {
-    function css_url($nom)
+    function site_url($uri = '')
     {
-        return base_url() . 'assets/css/' . $nom . '.css';
+        if( ! is_array($uri))
+        {
+            //	Tous les paramètres sont insérés dans un tableau
+            $uri = func_get_args();
+        }
+
+        //	On ne modifie rien ici
+        $CI =& get_instance();
+        return $CI->config->site_url($uri);
     }
 }
 
-if ( ! function_exists('js_url'))
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('url'))
 {
-    function js_url($nom)
+    function url($text, $uri = '')
     {
-        return base_url() . 'assets/js/' . $nom . '.js';
+        if( ! is_array($uri))
+        {
+            //	Suppression de la variable $text
+            $uri = func_get_args();
+            array_shift($uri);
+        }
+
+        echo '<a href="' . site_url($uri) . '">' . htmlentities($text) . '</a>';
+        return '';
     }
 }
 
-if ( ! function_exists('img_url'))
-{
-    function img_url($nom)
-    {
-        return base_url() . 'assets/img/' . $nom;
-    }
-}
 
-if ( ! function_exists('fonts_url'))
-{
-    function fonts_url($nom)
-    {
-        return base_url() . 'assets/img/' . $nom;
-    }
-}
+/* End of file MY_url_helper.php */
+/* Location: ./application/helpers/MY_url_helper.php */
