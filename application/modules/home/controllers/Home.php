@@ -15,6 +15,10 @@ class Home extends MX_Controller {
         $data['title'] = "Welcome to index Home";
         $data['text'] = "Controller File from Home modules HMVC CodeIgniter 3";
 
+        $data['css'][] = css_url('bootstrap.min');
+        $data['css'][] = css_url('font-awesome.min');
+        $data['css'][] = css_url('home/index');
+
         $this->twig->display('index', $data);
     }
 
